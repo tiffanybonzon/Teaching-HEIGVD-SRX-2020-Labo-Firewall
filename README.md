@@ -231,7 +231,7 @@ ping 192.168.200.3
 ```
 ---
 
-**LIVRABLE : capture d'écran de votre tentative de ping.**  
+![](figures/1_ConfigBasePingFail.png)
 
 ---
 
@@ -286,7 +286,7 @@ ping 192.168.100.3
 
 ---
 
-**LIVRABLE : capture d'écran de votre nouvelle tentative de ping.**
+![](figures/2_ConfigBasePingOK.png)
 
 ---
 
@@ -300,7 +300,7 @@ ping 8.8.8.8
 
 ---
 
-**LIVRABLE : capture d'écran de votre ping vers l'Internet.**
+![](figures/3_ConfigBasePingFail.png)
 
 ---
 
