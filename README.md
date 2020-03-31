@@ -588,7 +588,11 @@ Commandes iptables :
 ---
 
 ```bash
-LIVRABLE : Commandes iptables
+#SSH Client_in_LAN vers Server_in_DMZ
+iptables -A FORWARD -p tcp -s 192.168.100.3 -d 192.168.200.3 --dport 22 -j ACCEPT
+
+#SSH Client_in_LAN vers firewall
+iptables -A INPUT -p tcp -s 192.168.100.3 -d 192.168.100.2 --dport 22 -j ACCEPT
 ```
 
 ---
@@ -601,7 +605,7 @@ ssh root@192.168.200.3 (password : celui que vous avez configuré)
 
 ---
 
-**LIVRABLE : capture d'écran de votre connexion ssh.**
+![](figures/9_SSHOK.png)
 
 ---
 
@@ -612,7 +616,7 @@ ssh root@192.168.200.3 (password : celui que vous avez configuré)
 ---
 **Réponse**
 
-**LIVRABLE : Votre réponse ici...**
+> SSH ouvre un shell sécurisé (connextion chiffrée) qui permet la gestion de l'appareil cible. Donc sur un serveur SSH permet de le configurer/maintenir à distance
 
 ---
 
@@ -620,12 +624,10 @@ ssh root@192.168.200.3 (password : celui que vous avez configuré)
   <li>En général, à quoi faut-il particulièrement faire attention lors de l'écriture des règles du pare-feu pour ce type de connexion ?
   </li>                                  
 </ol>
-
-
 ---
 **Réponse**
 
-**LIVRABLE : Votre réponse ici...**
+> Il faut faire attention à n'autoriser que les IP de confiance à accéder au serveur SSH
 
 ---
 
