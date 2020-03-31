@@ -403,7 +403,23 @@ Commandes iptables :
 ---
 
 ```bash
-LIVRABLE : Commandes iptables
+#Activation du mode avec état
+iptables -A FORWARD -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+#Politique de DROP par défaut
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT DROP
+
+#Ping LAN vers DMZ
+iptables -A FORWARD -p icmp --icmp-type 8 -s 192.168.100.0/24 -d 192.168.200.0/24 -j ACCEPT
+
+#Ping LAN vers WAN
+iptables -A FORWARD -p icmp --icmp-type 8 -s 192.168.100.0/24 -o eth0 -j ACCEPT
+
+#Ping DMZ vers LAN
+iptables -A FORWARD -p icmp --icmp-type 8 -s 192.168.200.0/24 -d 192.168.100.0/24 -j ACCEPT
+
 ```
 ---
 
@@ -420,7 +436,7 @@ ping 8.8.8.8
 Faire une capture du ping.
 
 ---
-**LIVRABLE : capture d'écran de votre ping vers l'Internet.**
+![](figures/4_ManipQb.png)
 
 ---
 
@@ -430,20 +446,20 @@ Faire une capture du ping.
 </ol>
 
 
-| De Client\_in\_LAN à | OK/KO | Commentaires et explications |
-| :---                 | :---: | :---                         |
-| Interface DMZ du FW  |       |                              |
-| Interface LAN du FW  |       |                              |
-| Client LAN           |       |                              |
-| Serveur WAN          |       |                              |
+| De Client\_in\_LAN à | OK/KO | Commentaires et explications           |
+| :------------------- | :---: | :------------------------------------- |
+| Interface DMZ du FW  |  KO   | Pas autorisé avec les règles actuelles |
+| Interface LAN du FW  |  KO   | Pas autorisé avec les règles actuelles |
+| Client LAN           |  OK   | Requête interne au LAN                 |
+| Serveur WAN          |  OK   | Règle LAN vers WAN est appliquée       |
 
 
-| De Server\_in\_DMZ à | OK/KO | Commentaires et explications |
-| :---                 | :---: | :---                         |
-| Interface DMZ du FW  |       |                              |
-| Interface LAN du FW  |       |                              |
-| Serveur DMZ          |       |                              |
-| Serveur WAN          |       |                              |
+| De Server\_in\_DMZ à | OK/KO | Commentaires et explications           |
+| :------------------- | :---: | :------------------------------------- |
+| Interface DMZ du FW  |  KO   | Pas autorisé avec les règles actuelles |
+| Interface LAN du FW  |  KO   | Pas autorisé avec les règles actuelles |
+| Serveur DMZ          |  OK   | Requête interne à la DMZ               |
+| Serveur WAN          |  KO   | Pas autorisé avec les règles actuelles |
 
 
 ## Règles pour le protocole DNS
