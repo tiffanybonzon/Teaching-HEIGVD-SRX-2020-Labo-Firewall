@@ -233,6 +233,8 @@ ping 192.168.200.3
 
 ![](figures/1_ConfigBasePingFail.png)
 
+> Server_in_DMZ ne peut pas non plus ping Client_in_Lan
+
 ---
 
 En effet, la communication entre les clients dans le LAN et les serveurs dans la DMZ doit passer à travers le Firewall. Il faut donc définir le Firewall comme passerelle par défaut pour le client dans le LAN et le serveur dans la DMZ.
@@ -288,6 +290,8 @@ ping 192.168.100.3
 
 ![](figures/2_ConfigBasePingOK.png)
 
+> Server_in_DMZ peut aussi ping Client_in_LAN
+
 ---
 
 La communication est maintenant possible entre les deux machines. Pourtant, si vous essayez de communiquer depuis le client ou le serveur vers l'Internet, ça ne devrait pas encore fonctionner sans une manipulation supplémentaire au niveau du firewall. Vous pouvez le vérifier avec un ping depuis le client ou le serveur vers une adresse Internet.
@@ -301,6 +305,8 @@ ping 8.8.8.8
 ---
 
 ![](figures/3_ConfigBasePingFail.png)
+
+> Server_in_DMZ ne peut pas non plus ping l'extérieur
 
 ---
 
@@ -336,6 +342,8 @@ L'autre commande démarre le service SSH du serveur.
 **ATTENTION :** Il faudra aussi définir un mot de passe pour pour les connexions ssh. Pour cela, utiliser la commande `passwd`.
 
 Vérifiez que la connexion à l'Internet est maintenant possible depuis les deux autres machines. Pas besoin de capture d'écran.
+
+> Le serveur et le client arrivent effectivement à ping l'extérieur
 
 # Manipulations
 
