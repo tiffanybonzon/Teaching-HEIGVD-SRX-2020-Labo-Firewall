@@ -501,6 +501,8 @@ iptables -A FORWARD -p udp -s 192.168.100.0/24 -o eth0 --dport 53 -j ACCEPT
 </ol>
 ---
 
+
+
 ![](figures/6_DNSOK.png)
 
 ---
@@ -510,6 +512,8 @@ iptables -A FORWARD -p udp -s 192.168.100.0/24 -o eth0 --dport 53 -j ACCEPT
   </li>                                  
 </ol>
 ---
+
+
 **Réponse**
 
 C'est une erreur de résolution de nom (car le ping sur adresses IP fonctionne). Le protocole DNS n'ayant pas encore été autorisé, la requête de résolution du nom DNS www.google.com ne peut pas être envoyée par le client sur le WAN.
@@ -532,7 +536,10 @@ Commandes iptables :
 ---
 
 ```bash
-LIVRABLE : Commandes iptables
+#HTTP + HTTPS LAN vers WAN
+iptables -A FORWARD -p tcp -s 192.168.100.0/24 -o eth0 --dport 80 -j ACCEPT
+iptables -A FORWARD -p tcp -s 192.168.100.0/24 -o eth0 --dport 8080 -j ACCEPT
+iptables -A FORWARD -p tcp -s 192.168.100.0/24 -o eth0 --dport 443 -j ACCEPT
 ```
 
 ---
@@ -544,7 +551,11 @@ Commandes iptables :
 ---
 
 ```bash
-LIVRABLE : Commandes iptables
+#HTTP WAN vers Server_in_DMZ
+iptables -A FORWARD -p tcp -i eth0 -d 192.168.200.3 --dport 80 -j ACCEPT
+
+#HTTP LAN vers Server_in_DMZ
+iptables -A FORWARD -p tcp -s 192.168.100.0/24 -d 192.168.200.3 --dport 80 -j ACCEPT
 ```
 ---
 
@@ -554,7 +565,13 @@ LIVRABLE : Commandes iptables
 </ol>
 ---
 
-**LIVRABLE : capture d'écran.**
+> LAN vers WAN 
+
+![](figures/7_HTTPOK.png)
+
+> LAN vers Server_in_DMZ
+
+![](figures/8_HTTPOK.png)
 
 ---
 
