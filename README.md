@@ -641,6 +641,6 @@ A présent, vous devriez avoir le matériel nécessaire afin de reproduire la ta
 </ol>
 ---
 
-**LIVRABLE : capture d'écran avec toutes vos règles.**
+![](figures/10_AllRules.png)
 
 ---
