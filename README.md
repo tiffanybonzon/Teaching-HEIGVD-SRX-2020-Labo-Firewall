@@ -113,6 +113,7 @@ Pour établir la table de filtrage, voici les **conditions à respecter** dans l
   <li>En suivant la méthodologie vue en classe, établir la table de filtrage avec précision en spécifiant la source et la destination, le type de trafic (TCP/UDP/ICMP/any), les ports sources et destinations ainsi que l'action désirée (**Accept** ou **Drop**, éventuellement **Reject**).
   </li>                                  
 </ol>
+
 _Pour l'autorisation d'accès (**Accept**), il s'agit d'être le plus précis possible lors de la définition de la source et la destination : si l'accès ne concerne qu'une seule machine (ou un groupe), il faut préciser son adresse IP ou son nom (si vous ne pouvez pas encore la déterminer), et non la zone.
 Appliquer le principe inverse (être le plus large possible) lorsqu'il faut refuser (**Drop**) une connexion._
 
@@ -499,9 +500,8 @@ iptables -A FORWARD -p udp -s 192.168.100.0/24 -o eth0 --dport 53 -j ACCEPT
   <li>Tester en réitérant la commande ping sur le serveur de test (Google ou autre) :
   </li>                                  
 </ol>
+
 ---
-
-
 
 ![](figures/6_DNSOK.png)
 
@@ -511,6 +511,7 @@ iptables -A FORWARD -p udp -s 192.168.100.0/24 -o eth0 --dport 53 -j ACCEPT
   <li>Remarques (sur le message du premier ping)?
   </li>                                  
 </ol>
+
 ---
 
 
@@ -563,6 +564,7 @@ iptables -A FORWARD -p tcp -s 192.168.100.0/24 -d 192.168.200.3 --dport 80 -j AC
   <li>Tester l’accès à ce serveur depuis le LAN utilisant utilisant wget (ne pas oublier les captures d'écran).
   </li>                                  
 </ol>
+
 ---
 
 > LAN vers WAN 
@@ -613,6 +615,7 @@ ssh root@192.168.200.3 (password : celui que vous avez configuré)
   <li>Expliquer l'utilité de **ssh** sur un serveur.
   </li>                                  
 </ol>
+
 ---
 **Réponse**
 
@@ -624,6 +627,7 @@ ssh root@192.168.200.3 (password : celui que vous avez configuré)
   <li>En général, à quoi faut-il particulièrement faire attention lors de l'écriture des règles du pare-feu pour ce type de connexion ?
   </li>                                  
 </ol>
+
 ---
 **Réponse**
 
@@ -639,6 +643,7 @@ A présent, vous devriez avoir le matériel nécessaire afin de reproduire la ta
   <li>Insérer la capture d’écran avec toutes vos règles iptables
   </li>                                  
 </ol>
+
 ---
 
 ![](figures/10_AllRules.png)
