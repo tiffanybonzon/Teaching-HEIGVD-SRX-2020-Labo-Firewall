@@ -477,7 +477,7 @@ ping www.google.com
 
 ---
 
-**LIVRABLE : capture d'écran de votre ping.**
+![](figures/5_DNSFail.png)
 
 ---
 
@@ -488,7 +488,9 @@ Commandes iptables :
 ---
 
 ```bash
-LIVRABLE : Commandes iptables
+#DNS LAN vers WAN
+iptables -A FORWARD -p tcp -s 192.168.100.0/24 -o eth0 --dport 53 -j ACCEPT
+iptables -A FORWARD -p udp -s 192.168.100.0/24 -o eth0 --dport 53 -j ACCEPT
 ```
 
 ---
@@ -499,7 +501,7 @@ LIVRABLE : Commandes iptables
 </ol>
 ---
 
-**LIVRABLE : capture d'écran de votre ping.**
+![](figures/6_DNSOK.png)
 
 ---
 
@@ -510,7 +512,7 @@ LIVRABLE : Commandes iptables
 ---
 **Réponse**
 
-**LIVRABLE : Votre réponse ici...**
+C'est une erreur de résolution de nom (car le ping sur adresses IP fonctionne). Le protocole DNS n'ayant pas encore été autorisé, la requête de résolution du nom DNS www.google.com ne peut pas être envoyée par le client sur le WAN.
 
 ---
 
